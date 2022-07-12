@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <table class="table table-bordered">
+            <caption>Restaurants</caption>
+            <button v-on:click="update()">Mettre à jour</button>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Ville</th>
+                    <th>Equipe</th>
+
+                </tr>
+            </thead>
+            <tbody v-for="restaurant in restaurants">
+
+                <tr>
+                    <td>
+
+                        {{ restaurant.Id }} <br>
+
+                    </td>
+                    <td>
+                        {{restaurant.name}}
+                        <button v-on:click="supprimerResto(restaurant.Id)">Supprimer</button>
+                    </td>
+                    <td>
+                        {{restaurant.city}}
+                    </td>
+                    <td v-for="employe in employes">
+                        <p v-if="restaurant.Id===employe.restaurant_id"> {{employe.first_name}} <button
+                                v-on:click="supprimerEmploye(employe.Id)">Supprimer</button> </p>
+                    
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <span></span>
+    </div>
+
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                restaurants: [],
+                employes: []
+            },
+
+            methods: {
+                update() {
+                    axios.get("http://127.0.0.1:5000/restaurants")
+                        .then(res => this.restaurants = res.data)
+                        .catch(error => this.restaurants = [{ "name": "Erreur de chargement" }])
+
+                    axios.get("http://127.0.0.1:5000/employes")
+                        .then(res => this.employes = res.data)
+                        .catch(error => this.employes = [{ "name": "Erreur de chargement" }])
+                }
+            }
+        })
+
+
+
+        </script>
+    </body>
+</html>
