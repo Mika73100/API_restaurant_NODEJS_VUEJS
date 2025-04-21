@@ -20,8 +20,6 @@ Backend, frontend, base de données : tout est intégré pour apprendre, tester 
 
 <br>
 
-<img src="doc/preview.png" alt="aperçu de l'application" width="600"/>
-
 </div>
 
 ---
@@ -102,6 +100,8 @@ Il a été pensé pour apprendre, tester, expérimenter — que tu sois dévelop
 <div align="center">
 ⭐ N’hésite pas à forker, améliorer ou t’en inspirer ! ⭐  
 Bon code à toi 🚀
+
+⭐ Un petit like sur le repo fait toujours plaisir ! ⭐  
 </div>
 
 
